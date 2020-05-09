@@ -1,0 +1,36 @@
+server:
+  port: 29010
+  tomcat:
+    max-connections: 100
+    accept-count: 200
+spring:
+  profiles:
+    active: dev
+  application:
+    name: merchant-server
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    hikari:
+      connection-timeout: 50000
+      maximum-pool-size: 1500
+      max-lifetime: 40000
+      connection-test-query: SELECT 1
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+logback:
+  logdir: ./logs/${spring.application.name}/
+  name: ${spring.application.name}
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.seven.**.entity,com.seven.**.dao
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-column-underline: true
+    capital-mode: true
