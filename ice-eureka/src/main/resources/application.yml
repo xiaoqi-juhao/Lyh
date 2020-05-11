@@ -1,0 +1,13 @@
+server:
+  port: 10001
+eureka:
+  instance:
+    hostname: ice
+  client:
+    register-with-eureka: false         #是否将本项目注册到服务中心
+    fetch-registry: true           #查询注册信息
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
+  server:
+    enable-self-preservation: false     #关闭自我保护模式
+    eviction-interval-timer-in-ms: 4000       #定时清理服务
